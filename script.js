@@ -167,3 +167,18 @@ displayCredential('ssm');
   buttons[i].focus();buttons[i].click();
  });
 })();
+
+// V5.1: mobile quote shortcut appears only after the main hero leaves the viewport.
+(()=>{
+ const bar=document.getElementById('mobileStickyQuote');
+ const hero=document.getElementById('home');
+ if(!bar||!hero)return;
+ const mobile=window.matchMedia('(max-width:800px)');
+ const update=()=>{
+  const r=hero.getBoundingClientRect();
+  bar.hidden=!(mobile.matches&&r.bottom<90);
+ };
+ window.addEventListener('scroll',update,{passive:true});
+ window.addEventListener('resize',update,{passive:true});
+ update();
+})();
